@@ -1,39 +1,30 @@
 <template>
   <div class="content">
-    <div class="main" @scroll="scrollFn" id="main">
-      <div id="scrollView">
-        <header>页面头部，暂时用颜色快代替</header>
-        <main>
-          <div class="goods">
-            <div class="menu-box" id="menuBox">
-              <Menu
-                :data="menu"
-                :action="action"
-                :class="{ istop: istop }"
-                @clickEvent="menuClick"
-              />
-              <!-- <div class="menu" :class="{ istop: istop }">
-              <div
-                v-for="item of menu"
-                :key="item.key"
-                :class="{ action: action === item.key }"
-                @click="menuClick(item.key)"
-              >
-                {{ item.text }}
+    <div class="relative">
+      <div class="main" @scroll="scrollFn" id="main">
+        <div id="scrollView">
+          <header>页面头部，暂时用颜色快代替</header>
+          <main>
+            <div class="goods">
+              <div class="menu-box" id="menuBox">
+                <Menu
+                  :data="menu"
+                  :action="action"
+                  :class="{ istop: istop }"
+                  @clickEvent="menuClick"
+                />
               </div>
-            </div> -->
-            </div>
 
-            <div class="list">
-              <div v-for="item of list" :key="item.key" :id="item.key">
-                {{ item.text }}
+              <div class="list">
+                <div v-for="item of list" :key="item.key" :id="item.key">
+                  {{ item.text }}
+                </div>
               </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
     </div>
-
     <footer>页面底部</footer>
   </div>
 </template>
@@ -60,7 +51,7 @@ export default {
     // 数据初始化
     //商品类型选项
     let menu = reactive([]);
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
       menu.push({
         text: "菜单" + i,
         key: i + "",
@@ -74,7 +65,7 @@ export default {
 
     // 商品列表选项
     let list = reactive([]);
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
       // for (let j = 0; j < Math.ceil(Math.random() * 15); j++) {
       list.push({ text: "商品选项，类型：" + i, key: i + "" });
       list.push({ text: "商品" + i + "-1", key: i + "-1" });
@@ -145,20 +136,9 @@ export default {
 
 <style scoped>
 .istop {
-  position: fixed;
-  top: 0;
-}
-.action {
-  position: relative;
-  color: coral;
-}
-.action::before {
-  content: "";
-  background: coral;
-  height: 100%;
-  left: 0;
-  top: 0;
   position: absolute;
+  top: 0;
+  left: 0;
 }
 .content {
   height: 100%;
@@ -167,8 +147,13 @@ export default {
   justify-content: space-between;
 }
 .main {
-  flex: 1;
+  height: 100%;
   overflow: auto;
+}
+.relative {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
 }
 header {
   height: 300px;
