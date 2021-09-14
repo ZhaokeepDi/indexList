@@ -18,7 +18,7 @@ html,
 body,
 #app {
   width: 375px;
-  height: 812px;
+  height: 100%;
 }
 @charset "UTF-8";
 body,
